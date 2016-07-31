@@ -2,8 +2,13 @@
 
 ## [leetcode web site](https://leetcode.com/problemset/algorithms/)
 
-## finished problem
+### Solution of problem
 [0, 10), 11, [14, 24)
 
-## Contact me if you need explanation
-zengzt93@gmail.com
+#### detail
+[0, 6): implemented in java
+other: implemented in c++
+
+# Contact me if you need explanations
+- open issue: prefered
+- zengzt93@gmail.com

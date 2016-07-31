@@ -6,8 +6,8 @@
 [0, 10), 11, [14, 24)
 
 #### detail
-[0, 6): implemented in java
-other: implemented in c++
+- [0, 6): implemented in java
+- other: implemented in c++
 
 # Contact me if you need explanations
 - open issue: prefered

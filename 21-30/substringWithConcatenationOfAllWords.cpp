@@ -56,8 +56,8 @@ public:
         if(s.empty() || words.empty()) {
             return vector<int>();
         }
-        map<int, string> match = matchStr(s, words);
-        // make graph
+        map<int, string> match = kmpMatch(s, words);
+        // make list
         int wLen = words[0].length();
         map<int, Node*> nodes;
         for(map<int, string>::iterator it = match.begin(); it != match.end(); it++) {
@@ -78,7 +78,7 @@ public:
                 n->addNext(next);
             }
         }
-        // traverse graph
+        // traverse list
         return traverse(nodes, words.size(), countWordsTimes(words));
     }
 
@@ -128,12 +128,13 @@ public:
         return res;
     }
     
-    map<int, string> matchStr(const string& s, vector<string>& words) {
+    // match string using kmp algo
+    map<int, string> kmpMatch(const string& s, vector<string>& words) {
         map<int, string> res;
         int sLen = s.length();
         set<string> distinctWord(words.begin(), words.end());
         for(const string &pattern: distinctWord) {
-            vector<int> next = preprocess(pattern);
+            vector<int> next = getNext(pattern);
             int j = 0, wLen = pattern.length();
             for(int i = 0; i < sLen;) {
                 if(j == -1) { // the first char is already different, 
@@ -159,7 +160,7 @@ public:
         return res;
     }
     
-    vector<int> preprocess(const string& s) {
+    vector<int> getNext(const string& s) {
         vector<int> res(s.length());
         res[0] = -1;
         const char* start = s.c_str();

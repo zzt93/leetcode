@@ -5,7 +5,10 @@ using std::endl;
 using std::cout;
 
 using namespace std;
-
+/*
+	thought: emulate the thought of combination, add count of '(' and ')'
+	the core: In valid parentheses num of '(' >= num of ')' in the middle.
+*/
 void recur(vector<string>& res, string& s, int i, int n_l, int n_r) {
     if(n_l == 0 && n_r == 0) {
         res.push_back(s);
@@ -39,7 +42,7 @@ int main(int argc, char *argv[]){
 	return 0;
 }
 
-/**
+/**	wrong thought: generate n from n-1
     vector<string> generateParenthesis(int n) {
         vector<string> res;
         recur(res, n);

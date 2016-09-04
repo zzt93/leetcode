@@ -59,8 +59,8 @@ public:
 			if (now > next) {
 				indicies.push_back(nowI);
 			} else if (now < next) { // find an end
-				int sI = findStartSimple(height, next, nextI);
-				if (sI != -1 && sI != nowI) {
+				int sI = findStartMap(heightToIndex, next, nextI);
+				if (sI != -1) {
 					auto it = lower_bound(indicies.begin(), indicies.end(), sI);
 					assert(*it == sI);
 					indicies.erase(it + 1, indicies.end());
@@ -120,6 +120,45 @@ public:
 				return *(index - 1);
 			}
 			sameOrLess--;
+		}
+		return -1;
+	}
+
+	int findStartMap(map<int, vector<int>>& h2i, int h, int i) {
+		assert(h > 0);
+		// try to find larger one first
+		auto sameOrLarger = h2i.lower_bound(h);
+		auto tmp = sameOrLarger;
+		auto less = --tmp;
+		int maxI = -1;
+		while(sameOrLarger != h2i.end()) {
+			vector<int>& larger = sameOrLarger->second;
+			// find a larger one that before it
+			auto index = lower_bound(larger.begin(), larger.end(), i);
+			if (index != larger.begin()) {
+				int tmp = *(index - 1);
+				if(tmp > maxI) {
+					maxI = tmp;
+				}
+			}
+			sameOrLarger++;
+		}
+		if(maxI != -1) {
+			return maxI;
+		}
+
+		while(less != h2i.begin()) {
+			vector<int>& smaller = less->second;
+			auto index = lower_bound(smaller.begin(), smaller.end(), i);
+			if (index != smaller.begin()) {
+				int tmp = *(index - 1);
+				if(tmp == i - 1) {
+					return -1;
+				} else {
+					return tmp;
+				}
+			}
+			less--;
 		}
 		return -1;
 	}

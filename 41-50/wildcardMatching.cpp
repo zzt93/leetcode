@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <vector>
 
 using namespace std;
 
@@ -12,7 +13,12 @@ public:
     bool isMatch(string s, string p) {
         int sz = s.size();
         int pz = p.size();
-        bool match[sz + 1][pz + 1];
+
+        vector<vector<bool>> match(sz + 1);
+        for (int i = 0; i < sz + 1; ++i) {
+            match[i] = vector<bool>(pz + 1);
+        }
+
         match[0][0] = true;
         for (int i = 1; i < sz + 1; ++i) {
             match[i][0] = false;
@@ -21,7 +27,7 @@ public:
         {
             int j;
             for (j = 1; j < pz + 1; ++j) {
-                if (p[j] == '*') {
+                if (p[j - 1] == '*') {
                     match[0][j] = true;
                 } else {
                     break;

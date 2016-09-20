@@ -1,6 +1,10 @@
 //
 // Created by zzt on 9/17/16.
 //
+/*
+ * very similar to the process of solving longestValidParentheses.cpp
+ * parentheses make interval, which can be merged and connected
+ */
 
 #include <iostream>
 #include <vector>

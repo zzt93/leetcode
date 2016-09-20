@@ -1,6 +1,9 @@
 //
 // Created by zzt on 9/20/16.
 //
+#include <iostream>
+
+using namespace std;
 
 class Solution {
 public:

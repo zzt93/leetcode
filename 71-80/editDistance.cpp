@@ -30,6 +30,9 @@ class Solution {
         return dp[s1.size()][s2.size()];
     }
 public:
+    /**
+     * Wrong version
+     */
     int minDistance2(string word1, string word2) {
         int len = lcs(word1, word2);
         int add = word2.size() - len;
